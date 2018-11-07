@@ -1,5 +1,5 @@
 #### S29-L263 v2  
-**Basic Layour**  
+**Basic Layout**  
 * Add header and footer partials  
 * Include Semantic UI Framework   
 * Add simple nav  
