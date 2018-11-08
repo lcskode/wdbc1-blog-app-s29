@@ -1,3 +1,10 @@
+#### S29-L265 v3
+**Add New and Create route**  
+* Add NEW route  
+* Add NEW template  
+* Add CREATE route  
+* Add CREATE template  
+
 #### S29-L263 v2  
 **Basic Layout**  
 * Add header and footer partials  

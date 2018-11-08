@@ -56,12 +56,12 @@ var Blog = mongoose.model("Campground", blogSchema);
 /******************************************************************************
 RESTFUL ROUTES 
 ******************************************************************************/
-// ROOT route - redirect to /blogs
+// ROOT ROUTE - redirect to /blogs
 app.get("/", function(req, res){
   res.redirect("/blogs");
 });
 
-// INDEX route
+// INDEX ROUTE - /blogs (GET)
 app.get("/blogs", function(req, res){
   // list all blogs from db
   Blog.find({}, function(err, blogs){
@@ -69,6 +69,24 @@ app.get("/blogs", function(req, res){
       console.log(err);
     } else {
       res.render("index", {blogs: blogs});    
+    }
+  });
+});
+
+// NEW ROUTE - /blogs/new (Redirect to new.ejs Form)
+app.get("/blogs/new", function(req, res){
+  res.render("new");
+});
+
+// CREATE ROUTE - /blogs (POST)
+app.post("/blogs", function(req, res){
+  // create blog
+  Blog.create(req.body.blog, function(err, newBlog){
+    if (err) {
+      res.render("new");
+    } else { 
+      // then, redirect to the index
+      res.redirect("/blogs");
     }
   });
 });
