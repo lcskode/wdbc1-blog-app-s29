@@ -1,10 +1,11 @@
 /******************************************************************************
 GLOBAL DECLARATIONS
 ******************************************************************************/
-var express       = require("express"),
-    bodyParser    = require("body-parser"),
-    mongoose      = require("mongoose"),
-    app           = express();
+var express        = require("express"),
+    bodyParser     = require("body-parser"),
+    methodOverride = require("method-override"),
+    mongoose       = require("mongoose"),
+    app            = express();
 
 
 
@@ -19,6 +20,8 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 // use body-parser to extract data from a form
 app.use(bodyParser.urlencoded({extended: true}));
+// use method override
+app.use(methodOverride("_method"));
 
 
 
