@@ -94,7 +94,7 @@ app.post("/blogs", function(req, res){
 
 // SHOW ROUTE - /blogs/:id (GET) 
 app.get("/blogs/:id", function(req, res){
-  // 
+  // Find blog by ID and show blog content to show.ejs
   Blog.findById(req.params.id, function(err, foundBlog){
     if (err) {
       res.redirect("/blogs");
@@ -102,9 +102,26 @@ app.get("/blogs/:id", function(req, res){
       res.render("show", {blog: foundBlog});
     }
   });
-  
-  // res.send("SHOW PAGE!");
 });
+
+// EDIT ROUTE - /blogs/:id/edit (GET)
+app.get("/blogs/:id/edit", function(req, res){
+  // Find blog by ID
+  Blog.findById(req.params.id, function(err, foundBlog){
+    if (err) {
+      res.redirect("/blogs");
+    } else {
+      res.render("edit", {blog: foundBlog});
+    }
+  });  
+});
+
+// UPDATE ROUTE - /blogs/:id (PUT)
+app.put("/blogs/:id", function(req, res){
+  res.send("UPDATE ROUTE!");
+});
+
+
 
 
 /******************************************************************************
