@@ -1,4 +1,11 @@
-#### S29-L265 v3
+#### S29-L266 v4  
+**Show Time**  
+* Add SHOW route  
+* Add SHOW template  
+* Add links to show page  
+* Style SHOW template  
+
+#### S29-L265 v3  
 **Add New and Create route**  
 * Add NEW route  
 * Add NEW template  

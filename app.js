@@ -30,7 +30,7 @@ var blogSchema = new mongoose.Schema({
   title: String,
   image: String, 
   body: String,
-  // this will get the date/time stamp once added to db.
+  // this will get the date/time stamp automatically once data is added to db.
   created: {type: Date, default: Date.now}
 });
 
@@ -80,8 +80,9 @@ app.get("/blogs/new", function(req, res){
 
 // CREATE ROUTE - /blogs (POST)
 app.post("/blogs", function(req, res){
-  // create blog
+  // create blog, data coming from new.ejs form - blog array (req.body.blog)
   Blog.create(req.body.blog, function(err, newBlog){
+    // if has error, go back to new.ejs to create blog
     if (err) {
       res.render("new");
     } else { 
@@ -91,6 +92,19 @@ app.post("/blogs", function(req, res){
   });
 });
 
+// SHOW ROUTE - /blogs/:id (GET) 
+app.get("/blogs/:id", function(req, res){
+  // 
+  Blog.findById(req.params.id, function(err, foundBlog){
+    if (err) {
+      res.redirect("/blogs");
+    } else {
+      res.render("show", {blog: foundBlog});
+    }
+  });
+  
+  // res.send("SHOW PAGE!");
+});
 
 
 /******************************************************************************
