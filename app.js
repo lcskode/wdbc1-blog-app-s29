@@ -130,11 +130,21 @@ app.put("/blogs/:id", function(req, res){
       res.redirect("/blogs/" + req.params.id);
     }
   })
-
-
-  // res.send("UPDATE ROUTE!");
 });
 
+// DESTROY/DELETE ROUTE -  /blogs/:id (DELETE)
+app.delete("/blogs/:id", function(req, res){
+  // destroy blog post
+  Blog.findByIdAndRemove(req.params.id, function(err){
+    if (err) {
+      // display error if any
+      res.redirect("/blogs")
+    } else {
+      // show all blogs if delete is successful
+      res.redirect("/blogs");
+    }
+  });
+});
 
 
 

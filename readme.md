@@ -1,3 +1,8 @@
+#### S29-L268 v6  
+**DESTROY**  
+* Add DESTROY route  
+* Add EDIT and DESTROY links  
+
 #### S29-L267 v5
 **Edit/Update**  
 * Add EDIT route  
