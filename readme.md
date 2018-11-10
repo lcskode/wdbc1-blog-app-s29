@@ -1,3 +1,10 @@
+#### S29-L269 v7  
+**Final Updates**
+* Sanitize blog body  
+* Install npm express-sanitizer for sanitizing blog body  
+* Style index  
+* Update REST Table  
+
 #### S29-L268 v6  
 **DESTROY**  
 * Add DESTROY route  

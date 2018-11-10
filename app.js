@@ -1,11 +1,12 @@
 /******************************************************************************
 GLOBAL DECLARATIONS
 ******************************************************************************/
-var express        = require("express"),
-    bodyParser     = require("body-parser"),
-    methodOverride = require("method-override"),
-    mongoose       = require("mongoose"),
-    app            = express();
+var express           = require("express"),
+    bodyParser        = require("body-parser"),
+    methodOverride    = require("method-override"),
+    expressSanitizer  = require("express-sanitizer"), 
+    mongoose          = require("mongoose"),
+    app               = express();
 
 
 
@@ -20,8 +21,11 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 // use body-parser to extract data from a form
 app.use(bodyParser.urlencoded({extended: true}));
+// use expressSanitizer and it SHOULD BE DECLARED NEXT TO bodyParser
+app.use(expressSanitizer());
 // use method override
 app.use(methodOverride("_method"));
+
 
 
 
@@ -83,6 +87,11 @@ app.get("/blogs/new", function(req, res){
 
 // CREATE ROUTE - /blogs (POST)
 app.post("/blogs", function(req, res){
+  // SANITIZE blog.body FIRST (it's coming from new route form, new.ejs)
+  console.log(req.body);
+  req.body.blog.body = req.sanitize(req.body.blog.body);
+  console.log("=============================");
+  console.log(req.body);
   // create blog, data coming from new.ejs form - blog array (req.body.blog)
   Blog.create(req.body.blog, function(err, newBlog){
     // if has error, go back to new.ejs to create blog
@@ -121,7 +130,8 @@ app.get("/blogs/:id/edit", function(req, res){
 
 // UPDATE ROUTE - /blogs/:id (PUT)
 app.put("/blogs/:id", function(req, res){
-  // 
+  // SANITIZE blog.body FIRST
+  req.body.blog.body = req.sanitize(req.body.blog.body);
   // Blog.findByIdAndUpdate(id, newData, callback)
   Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
     if (err) {
