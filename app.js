@@ -13,8 +13,11 @@ var express           = require("express"),
 /******************************************************************************
 APP CONFIG
 ******************************************************************************/
-// use restul_blog_app db if exists, if not, it will create restul_blog_app.
-mongoose.connect("mongodb://localhost/restful_blog_app");
+// use restful_blog_app db if exists, if not, it will create restul_blog_app.
+// mongoose.connect("mongodb://localhost/restful_blog_app");
+
+// use wdbc1_restful_blog_app db if exists, if not, it will create restul_blog_app.
+mongoose.connect("mongodb://admin:admin123@ds061391.mlab.com:61391/wdbc1_restful_blog_app");
 // tell Express to drop .ejs on all ejs templates
 app.set("view engine", "ejs");
 // tell express to use/serve the contents of public folder
@@ -44,7 +47,7 @@ var blogSchema = new mongoose.Schema({
 // use blogschema
 var Blog = mongoose.model("Campground", blogSchema);
 
-// create dummy data to save on db
+// // create dummy data to save on db
 // Blog.create(
 //   {
 //     title: "Test Blog",
@@ -88,10 +91,10 @@ app.get("/blogs/new", function(req, res){
 // CREATE ROUTE - /blogs (POST)
 app.post("/blogs", function(req, res){
   // SANITIZE blog.body FIRST (it's coming from new route form, new.ejs)
-  console.log(req.body);
+  // console.log(req.body);
   req.body.blog.body = req.sanitize(req.body.blog.body);
-  console.log("=============================");
-  console.log(req.body);
+  // console.log("=============================");
+  // console.log(req.body);
   // create blog, data coming from new.ejs form - blog array (req.body.blog)
   Blog.create(req.body.blog, function(err, newBlog){
     // if has error, go back to new.ejs to create blog
