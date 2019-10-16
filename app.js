@@ -15,10 +15,11 @@ var express           = require("express"),
 APP CONFIG
 ******************************************************************************/
 
-// use restful_blog_app db if exists, if not, it will create restul_blog_app.
-// mongoose.connect("mongodb://localhost/restful_blog_app");
-// use wdbc1_restful_blog_app db if exists, if not, it will create restul_blog_app.
-mongoose.connect("mongodb://admin:admin123@ds061391.mlab.com:61391/wdbc1_restful_blog_app");
+// use restful_blog_app db if exists, if not, it will create restul_blog_app db @localhost.
+mongoose.connect("mongodb://localhost/restful_blog_app");
+
+// use wdbc1_restful_blog_app db if exists, if not, it will create restul_blog_app db @server.
+// mongoose.connect("mongodb://admin:admin123@ds061391.mlab.com:61391/wdbc1_restful_blog_app");
 
 // tell Express to drop .ejs on all ejs templates
 app.set("view engine", "ejs");
